@@ -6,6 +6,7 @@ use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use PDO;
 use Yajra\DataTables\Facades\DataTables;
 
 class DummyController extends Controller
@@ -31,20 +32,21 @@ class DummyController extends Controller
                     "TrustServerCertificate" => true,
                 ];
                 $conn = new PDO("sqlsrv:server = $serverName; Database = $databaseName;", $uid, $pwd, $options);
-                $stmt = $conn->query($sap_Query);
+                $stmt = $conn->query($received_query);
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     $data[] = $row; // Append each row to the $data array
                 }
 
-            // $data = DB::connection('sqlsrv')->select($received_query);
-            $firstElement = $data[0];
-            $allKeys = [];
-            $tdContent = "";
-            foreach ($firstElement as $key => $value) {
-                array_push($allKeys, $key);
-                $tdContent .= "<td>$key</td>";
+                // $data = DB::connection('sqlsrv')->select($received_query);
+                $firstElement = $data[0];
+                $allKeys = [];
+                $tdContent = "";
+                foreach ($firstElement as $key => $value) {
+                    array_push($allKeys, $key);
+                    $tdContent .= "<td>$key</td>";
+                }
+                return response()->json(['data' => $data, 'first' => $firstElement, 'keys' => $allKeys, 'row' => $tdContent]);
             }
-            return response()->json(['data' => $data, 'first' => $firstElement, 'keys' => $allKeys, 'row' => $tdContent]);
         }
     }
 
