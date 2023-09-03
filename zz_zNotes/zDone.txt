@@ -1,0 +1,64 @@
+{
+    1-fILTERING THE DATA 
+        The keyUp Event, Remeber Some users Might Copy Data and Paste Directly 
+	    Hence No Filteration will Happen
+
+    2-The sql_Query_String is MAX LENGH and we Need to Change this Varchar thing;
+
+    3-Fixed the SQl View Error in the View Pages [ For long Query ]
+
+    4-Approval Middlware For Users
+        - Adding the approve Button and Controller ...etc 
+    
+    5-Exporting Files Issues :
+        - The Exported Excel File has the First Row EMPTY
+        - Exporting Report as PDF  ;
+        - Excel File Exporting On the Mobile Devices [ Testing it ]
+        - Notify the User about Export [Toaster]
+
+    6- The Logo :
+		- Dispalyed in the NavBar If Screen Is Minimized
+		- Certain Logo to appear For each Certain Domain // TODO 
+
+    7- Verification : 
+        - Verification "The Whole Process 'Email msg + Middleware" 
+        - Making the Default admin Verified By  Default 
+        - Adding the Verify Middleware to Routes  ; 
+
+    - Making sign Up For Certain Emails/Domains Only[2coom,aljouai,Lbaik]
+
+    
+}
+1- Disabled Initial Ordering Of Data  ; 
+2- Styling Searching input Fields ;  
+3- Styling Export Buttons  ; 
+4- Removed the  Valdiation Massage For the Emails  
+5- Changed the Order [ Verify First THEN Approve ]
+6- Added Logout Link in the Home Page  ; 
+7- Showing User Data in a show Page  ; 
+8- Side Bar Notification For NON-apprived YET verified Users : 
+    - And in their Cards in Index Also  ; 
+    - The PlaceHolder Image in the Profile  ; 
+9-Removed Pencil Icon  ; 
+
+======================
+TODO => Making Excel Sheet with all todos and Stuff  ; 
+
+Start SSL  ; 
+===================
+- Statistics For the Tables [ Max , Min , Avg, Sum ]
+
+- Rounding Numbers -> From the DB 
+
+- The Server Side Export For Files [ Pdf , Excel , csv ] ; 
+    - Because Exporting Now Making Lagging 
+
+Deleting Users ? 
+	- Yes Or No 
+
+- Charts
+- Pivot Table
+
+
+- SSL For the Project
+- Making the Project AutoLoad - Auto Run Mysql Server Upon Bootstrapping . 

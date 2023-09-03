@@ -1,0 +1,188 @@
+WITH JOUTMS ------------- JOU AND TM SALES
+AS
+
+
+(
+
+SELECT 
+'TM' 'COMP',
+T1.ItemCode, 
+T1.Dscription,
+T1.ItemCode + '  |  ' + T10.ItemName 'ItemC.N', 
+T1.Quantity,
+T1.Price,
+T1.PriceBefDi, 
+ROUND(T1.PriceBefDi * T1.Quantity,2) 'ROW Total Bef All Discounts Bef VAT', 
+ISNULL(T0.DiscPrcnt,0) + ISNULL(T1.DiscPrcnt,0) 'DiscPrcnt',
+(1-ROUND(T1.INMPrice/T1.PriceBefDi,2))*100 'All Discounts %', 
+T1.INMPrice*T1.Quantity  'Net Row Value without VAT',
+ROUND(T1.INMPrice * T1.Quantity,2) 'ROW Total Aft All Discounts Bef VAT', 
+ROUND(ROUND(T1.INMPrice * T1.Quantity,2) * 1.05 ,2) 'ROW Total With VAT',
+
+T1.WhsCode,
+
+------------------------------  
+T12.Substitute,
+T10.ItemName,
+T11.ItmsGrpNam,
+T10.U_BrandN, 
+T10.U_MGroup, 
+T10.U_SubGroupN, 
+T10.U_SubGroup2, 
+T10.U_SubGroup3, 
+T10.U_SubGroup4, 
+-------------------------------
+  C1.GroupName 'UserCode'  
+   
+, N'تطور معنا' as 'Branch' 
+	 
+, T00.U_NAME 'User Code' 
+, T0.ToWhsCode	  
+
+
+--, C01.State 'StateB', C01.City 'CityB'
+--, C02.State 'StateS', C02.City 'CityS'
+, S0.Name 'State'
+, C0.City 
+, T0.DocNum
+, T0.DocDate
+, YEAR(T0.DocDate) 'Year'
+, MONTH(T0.DocDate) 'Month'
+, CONVERT(Nvarchar,YEAR(T0.DocDate)) + '/' + CONVERT(Nvarchar,MONTH(T0.DocDate)) 'Y/M'
+, T0.NumAtCard
+, T0.CardCode
+, T0.CardName 'InvCardName'
+, C0.CardName
+, T0.SlpCode
+, T01.SlpName
+, T0.UserSign
+, (T0.DocTotal + T0.DiscSum - T0.RoundDif - T0.VatSum) 'DocTotalBef.Disc,VatAndRound'
+, T0.DiscSum
+, T0.VatSum 
+, T0.RoundDif 
+, (T0.DocTotal + T0.DiscSum - T0.RoundDif - T0.VatSum) 'DocTotalBef.Disc,VatAndRound.'
+, (T0.DocTotal - T0.RoundDif - T0.VatSum) 'DocTotalBefVatAndRoundAft.Disc'
+, (T0.DocTotal - T0.RoundDif ) 'DocTotalBef.RoundAft.DiscAndVat'
+, (T0.DocTotal ) 'DocTotalAft.Disc,VatAndRound'
+FROM 
+(TM.DBO.OINV T0 INNER JOIN TM.DBO.INV1 T1 ON T0.DocEntry = T1.DocEntry
+LEFT JOIN  TM.DBO.OUSR T00 ON T0.USERSIGN = T00.INTERNAL_K
+LEFT JOIN  TM.DBO.OSLP T01 ON T0.SlpCode = T01.SlpCode)
+LEFT JOIN 
+((TM.DBO.OCRD C0 LEFT JOIN TM.DBO.OCST S0 ON C0.State1 = S0.Code)
+
+ LEFT JOIN TM.DBO.OCRG C1 ON C0.GroupCode = C1.GroupCode)
+ON C0.CardCode = T0.CardCode
+LEFT JOIN (TM.DBO.OITM T10 INNER JOIN TM.DBO.OITB T11 ON T10.ItmsGrpCod = T11.ItmsGrpCod 
+Left JOIN TM.DBO.OSCN T12 ON T10.[ItemCode] = T12.[ItemCode]) ON T1.ItemCode = T10.ItemCode
+WHERE 
+T0.CANCELED ='N'
+
+UNION ALL
+
+
+SELECT 
+'TM' 'COMP',
+T1.ItemCode, 
+T1.Dscription, 
+T1.ItemCode + '  |  ' + T10.ItemName 'ItemC.N', 
+-T1.Quantity,
+-T1.Price,
+-T1.PriceBefDi, 
+-ROUND(T1.PriceBefDi * T1.Quantity,2) 'ROW Total Bef All Discounts Bef VAT', 
+-(ISNULL(T0.DiscPrcnt,0) + ISNULL(T1.DiscPrcnt,0)) 'DiscPrcnt',
+-((1-ROUND(T1.INMPrice/T1.PriceBefDi,2))*100) 'All Discounts %', 
+-T1.INMPrice*T1.Quantity  'Net Row Value without VAT',
+-ROUND(T1.INMPrice * T1.Quantity,2) 'ROW Total Aft All Discounts Bef VAT', 
+-ROUND(ROUND(T1.INMPrice * T1.Quantity,2) * 1.05 ,2) 'ROW Total With VAT',
+
+T1.WhsCode,
+
+------------------------------  
+T12.Substitute,
+T10.ItemName,
+T11.ItmsGrpNam,
+T10.U_BrandN, 
+T10.U_MGroup, 
+T10.U_SubGroupN, 
+T10.U_SubGroup2, 
+T10.U_SubGroup3, 
+T10.U_SubGroup4, 
+-------------------------------
+  C1.GroupName 'UserCode'  
+
+, N'تطور معنا' as 'Branch' 
+
+, T00.U_NAME  'User Code' 
+, T0.ToWhsCode	  
+
+--, C01.State 'StateB', C01.City 'CityB'
+--, C02.State 'StateS', C02.City 'CityS'
+, S0.Name 'State'
+, C0.City 
+, T0.DocNum
+, T0.DocDate
+, YEAR(T0.DocDate) 'Year'
+, MONTH(T0.DocDate) 'Month'
+, CONVERT(Nvarchar,YEAR(T0.DocDate)) + '/' + CONVERT(Nvarchar,MONTH(T0.DocDate)) 'Y/M'
+, T0.NumAtCard
+, T0.CardCode
+, T0.CardName 'InvCardName'
+, C0.CardName
+, T0.SlpCode
+, T01.SlpName
+, T0.UserSign
+, -(T0.DocTotal + T0.DiscSum - T0.RoundDif - T0.VatSum) 'DocTotalBef.Disc,VatAndRound'
+, -T0.DiscSum
+, -T0.VatSum 
+, -T0.RoundDif 
+, -(T0.DocTotal + T0.DiscSum - T0.RoundDif - T0.VatSum) 'DocTotalBef.Disc,VatAndRound.'
+, -(T0.DocTotal - T0.RoundDif - T0.VatSum) 'DocTotalBefVatAndRoundAft.Disc'
+, -(T0.DocTotal - T0.RoundDif ) 'DocTotalBef.RoundAft.DiscAndVat'
+, -(T0.DocTotal ) 'DocTotalAft.Disc,VatAndRound'
+FROM 
+(TM.DBO.ORIN T0 INNER JOIN TM.DBO.RIN1 T1 ON T0.DocEntry = T1.DocEntry
+LEFT JOIN  TM.DBO.OUSR T00 ON T0.USERSIGN = T00.INTERNAL_K
+LEFT JOIN  TM.DBO.OSLP T01 ON T0.SlpCode = T01.SlpCode)
+LEFT JOIN 
+((TM.DBO.OCRD C0 LEFT JOIN TM.DBO.OCST S0 ON C0.State1 = S0.Code)
+ LEFT JOIN TM.DBO.OCRG C1 ON C0.GroupCode = C1.GroupCode)
+ON C0.CardCode = T0.CardCode
+LEFT JOIN (TM.DBO.OITM T10 INNER JOIN TM.DBO.OITB T11 ON T10.ItmsGrpCod = T11.ItmsGrpCod 
+LEFT JOIN TM.DBO.OSCN T12 ON T10.[ItemCode] = T12.[ItemCode]) ON T1.ItemCode = T10.ItemCode
+WHERE 
+T0.CANCELED ='N'
+
+)
+
+SELECT
+MAX(CONVERT(datetime, CONCAT( N0.Month , '-' , '01' ,'-' ,  N0.Year))) AS DocDate ,
+N0.[Y/M],
+N0.UserCode 'CustGroup',
+N0.[User Code],
+
+N0.Branch,
+MAX(N0.COMP) Comp,
+N0.CardCode,
+MAX(N0.U_MGroup) MGroup,
+N0.ItemCode,
+N0.WhsCode,
+MAX(N0.CardName) CardName,
+MAX(N0.Month) Month,
+MAX(N0.Year) Year,
+MAX(N0.ItemName) ItemName,
+SUM(N0.Quantity) Quantity,
+SUM(N0.[Net Row Value without VAT]) 'Net Row Value without VAT'
+
+
+FROM 
+JOUTMS N0
+GROUP BY
+N0.[Y/M],
+N0.Branch,
+N0.UserCode,
+
+N0.[User Code],
+N0.CardCode,
+N0.ItemCode,
+N0.WhsCode

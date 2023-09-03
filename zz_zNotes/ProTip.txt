@@ -1,0 +1,17 @@
+If there is a Page that require Multiple Requests " Like a DataTable One " 
+Then Make a Route For the Ajax and Another To return the View ...etc  ; 
+============================
+==============================
+$ php artisan make:controller CustomersController --model=Customer
+$ php artisan make:model ReportCategory -mc [Migration and controller Too]
+==================================
+https://stackoverflow.com/questions/40608134/tokenmismatchexception-with-javascript-x-editable-on-laravel-5-3
+________________________________________________
+App\Models\ReportCategory::all() as $category
+=-------------------------------------
+{{ $report->title }}  >> If you will put it inside value Attribue then 
+Put it inside Quotation marks Or if Title Has Spaces it 
+will ONLY print First Letter  ; 
+========================
+Routes Need To be Refactored ; 
+==========================

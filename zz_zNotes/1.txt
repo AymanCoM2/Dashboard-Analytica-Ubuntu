@@ -1,0 +1,12 @@
+$ php artisan migrate:fresh
+
+$ php artisan app:initialize-app
+
+==========================
+1-First Of All , Migrate Fresh  ; 
+
+2- $ php artisan app:initialize-app
+    - It will Create Admin + Basic 2 Roes 
+        -[ The Zero Role , Admin ALL Roles ]
+
+==========================

@@ -1,0 +1,6 @@
+SELECT * FROM ALL_LB_SALES;
+
+SELECT * FROM LB_SALES;
+
+SELECT top 10 ROUND(Quantity,2) Quantity,ROUND(Quantity,2) Quantity1 FROM ALL_LB_SALES;
+
