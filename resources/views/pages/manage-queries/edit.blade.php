@@ -13,7 +13,6 @@
                 @foreach (App\Models\ReportCategory::all() as $category)
                     <option value="{{ $category->id }}"
                         {{ $x = $singleQuery->report_category_id == $category->id ? 'selected' : '' }}>
-                        {{-- $result = condition ? value1 : value2; --}}
                         {{ $category->category_name }}
                     </option>
                 @endforeach
@@ -26,7 +25,10 @@
         <button type="submit" class="btn btn-primary">Save Updates</button>
     </form>
     <div class="row m-5">
-        <a href="" class="btn btn-danger float-right" id="testingQuery">Test Query</a>
+        <div class="col-9"></div> <!-- Create 9 empty columns -->
+        <div class="col-3">
+            <a href="" class="btn btn-danger float-right" id="testingQuery">Test Query</a>
+        </div>
     </div>
     <div class="container overflow-auto">
         <h1 id="loader" class="text-center">
@@ -84,15 +86,8 @@
                                 data: i,
                                 name: i
                             });
-                            // HERE IN THE LOOP
-                            // TODO try thr innerHTML instead Of Nodes ? 
-                            // node = document.createElement("td");
-                            // textnode = document.createTextNode(i);
-                            // node.innerText = i ; 
                             document.getElementById("the-heading").innerHTML = data.row;
                         }
-                        // Create TH elements and Put the Text 
-
                         $('.data-table').DataTable({
                             deferRender: true,
                             retrieve: false,

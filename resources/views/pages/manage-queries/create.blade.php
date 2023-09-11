@@ -25,7 +25,10 @@
 
     </form>
     <div class="row m-5">
-        <a href="" class="btn btn-danger float-right" id="testingQuery">Test Query</a>
+        <div class="col-9"></div> <!-- Create 9 empty columns -->
+        <div class="col-3">
+            <a href="" class="btn btn-danger float-right" id="testingQuery">Test Query</a>
+        </div>
     </div>
     <div class="container overflow-auto">
         <h1 id="loader" class="text-center">

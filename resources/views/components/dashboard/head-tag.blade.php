@@ -6,7 +6,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon.png') }}">
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="{{ asset('dashboard/css/fa-all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/cerulean-bootstrap.min.css') }}">
     <link href="{{ asset('dashboard/css/style.css') }}" rel="stylesheet">
     {{-- //HACK Switch the Order Of the Above Two Files To Change Design  --}}
     <link rel="stylesheet" href="{{ asset('bootstrap5-editable/css/bootstrap-editable.css') }}">

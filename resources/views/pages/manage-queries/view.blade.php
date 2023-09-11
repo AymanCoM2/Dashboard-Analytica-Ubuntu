@@ -18,18 +18,12 @@
         </div>
     </div>
 
-    {{-- <div class="">
-        <canvas id="myChart"></canvas>
-    </div> --}}
-    {{-- TODO --}}
-
     <div class="container overflow-auto">
         <h1 id="loader" class="text-center">
             <div class="spinner-border" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
         </h1>
-        {{-- <a href="" id="theHref" class="btn btn-primary">Generate Pdf File From Data</a> --}}
         <table class="table  table-bordered data-table">
             <thead>
                 <tr id="the-heading">
@@ -81,10 +75,7 @@
                         });
                         document.getElementById("the-heading").innerHTML = data.row;
                     } // 
-                    // let startTime = new Date();
-                    // let endTime = new Date();
-                    // let timeElapsed = endTime - startTime;
-                    // alert(timeElapsed);
+
 
                     pdfMake.fonts = {
                         Roboto: {
@@ -100,15 +91,15 @@
                         dom: 'Bfrtip',
                         buttons: [{
                                 extend: 'csv',
-                                className: 'btn btn-primary shadow rounded-pill'
+                                className: 'btn btn-primary shadow'
                             }, {
                                 extend: 'excelHtml5',
-                                className: 'btn btn-success shadow  rounded-pill',
+                                className: 'btn btn-primary shadow',
                                 title: null
                             },
                             {
                                 extend: 'pdfHtml5',
-                                className: ' btn btn-warning shadow  rounded-pill',
+                                className: ' btn btn-primary shadow',
                                 charset: "utf-8",
                                 pageSize: 'A0',
                                 bom: true,
@@ -130,25 +121,17 @@
                         columns: columns,
                         initComplete: function() {
 
-                            // console.log(this.api().rows().data()[0]);
                             $("#loader").text("")
-                            // createSomeCharts(x); // Sending to Outer
-                            // TODO
                             this.api()
                                 .columns()
                                 .every(function() {
                                     let column = this;
-                                    // let title = column.header().textContent;
-                                    // Create input element
                                     let input = document.createElement('input');
                                     input.classList.add("rounded");
                                     input.classList.add("d-block");
                                     input.classList.add("border-primary");
                                     input.classList.add("shadow");
-
-                                    // input.placeholder = title;
                                     column.header().append(input);
-                                    // Event listener for user input
                                     input.addEventListener('input', () => {
                                         if (column.search() !== this
                                             .value) {
@@ -156,18 +139,10 @@
                                                 .draw();
                                         }
                                     });
-                                    // input.addEventListener('keyup', () => {
-                                    //     if (column.search() !== this
-                                    //         .value) {
-                                    //         column.search(input.value)
-                                    //             .draw();
-                                    //     }
-                                    // });
                                     $('input').click(function(e) {
                                         e.stopPropagation();
                                     });
                                 });
-                            // alert(timeElapsed);
                         }, // initComplete END 
                     }); // End Of Making the New Data Table 
 
@@ -178,30 +153,7 @@
                 }, // End of Error Option 
             }) // End Of Ajax call 
 
-            // document.getElementById('theHref').addEventListener(
-            //     'click',
-            //     (e) => {
-            //         // TODO making the Server-Side Export Not Client Side 
-            //         e.preventDefault();
-            //         console.log('clicked');
-            //         let searchedData = table.rows({
-            //             search: 'applied'
-            //         }).data().toArray();
 
-            //         $.ajax({
-            //             type: 'get',
-            //             url: "{{ route('pdf-generate') }}",
-            //             data: {
-            //                 que: searchedData,
-            //             },
-            //             success: function(data) {
-            //                 console.log("Request Done");
-            //                 console.log(data);
-            //             },
-            //             error: function(res) {}
-            //         });
-            //     }
-            // );
 
             function addBtnEvent() {
                 let buttonsArr = document.getElementsByClassName(
