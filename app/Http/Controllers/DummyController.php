@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use PDO;
-use Yajra\DataTables\Facades\DataTables;
 
 class DummyController extends Controller
 {
-    // ToGet also the DB Name and User Credits ? ?? 
     public function index(Request $request)
     {
         if ($request->ajax()) {

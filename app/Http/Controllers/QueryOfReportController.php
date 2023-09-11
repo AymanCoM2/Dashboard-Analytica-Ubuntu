@@ -13,7 +13,7 @@ class QueryOfReportController extends Controller
         // TODO Pagination 
         $allQueries = QueryOfReport::all();
         return view('pages.manage-queries.index', compact('allQueries'));
-    } // TODO
+    }
 
     public function create()
     {
@@ -30,9 +30,8 @@ class QueryOfReportController extends Controller
         $newQuery->sql_query_string = $request->f_sql_query_string;
         $newQuery->save();
 
-        // TODO after adding the New Query , Use DB Facade to store it For the Admin Role 
-
         DB::insert('insert into roles_queries (role_id, query_id) values (?, ?)', [1, $newQuery->id]);
+        // ^ after adding the New Query , Use DB Facade to store it For the Admin Role 
 
         return view('pages.manage-queries.index');
     } // DONE 
@@ -49,7 +48,6 @@ class QueryOfReportController extends Controller
     }
     public function update(Request $request, $id)
     {
-        // TODO 
         $updatedQuery = QueryOfReport::find($id);
         $updatedQuery->query_title = $request->f_query_title;
         $updatedQuery->report_category_id = $request->f_report_category_id;
@@ -64,6 +62,5 @@ class QueryOfReportController extends Controller
         $deletedQuery->delete();
         Toastr()->info('Query is Deleted Successfully');
         return redirect()->route('queries.manage.index');
-        // TODO with STatus For Toaster 
     }
 }

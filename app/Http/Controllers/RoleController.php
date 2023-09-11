@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\QueryOfReport;
 use App\Models\Role;
 use App\Models\User;
-use Brian2694\Toastr\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -22,7 +20,6 @@ class RoleController extends Controller
         return view('pages.manage-roles.create');
     }
 
-
     public function store(Request $request)
     {
         $newRole = new Role();
@@ -31,7 +28,6 @@ class RoleController extends Controller
         $queries_arr = $request->f_query_id;
         if ($queries_arr) {
             foreach ($queries_arr as $key => $value) {
-
                 DB::insert('insert into roles_queries (role_id, query_id) values (?, ?)', [$newRole->id, $value]);
             }
         }
@@ -68,13 +64,10 @@ class RoleController extends Controller
 
     public function update(Request $request, $role)
     {
-        // dd($request);
         $updatedRole = Role::find($role);
         $updatedRole->role_name = $request->f_role_name;
         $updatedRole->save();
-
         DB::delete('Delete from roles_queries where (role_id) = (?)', [$updatedRole->id]);
-
         // Save New Queries 
         $queries_arr = $request->f_query_id;
         if ($queries_arr) {
@@ -83,7 +76,7 @@ class RoleController extends Controller
                 DB::insert('insert into roles_queries (role_id, query_id) values (?, ?)', [$updatedRole->id, $value]);
             }
         }
-        // REfresh and Redirect to the Home Of Roles + Toaster 
+        // Refresh and Redirect to the Home Of Roles + Toaster 
         toastr()->info('Role Created and OK');
         $allRoles = Role::all();
         return redirect()->route('roles.manage.index', compact('allRoles'));

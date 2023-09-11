@@ -43,9 +43,9 @@ class ReportCategoryController extends Controller
         // A new View For Showing the Toaster 
         // Toastr()->info('ROROROR');
         // TODO 
-        $updatedCategory  = ReportCategory::find($request->pk) ; 
-        $updatedCategory->category_name  = $request->value  ; 
-        $updatedCategory->save() ; 
+        $updatedCategory  = ReportCategory::find($request->pk);
+        $updatedCategory->category_name  = $request->value;
+        $updatedCategory->save();
         return response()->json($request->value, 200);
     }
     public function delete(Request $request, $id)

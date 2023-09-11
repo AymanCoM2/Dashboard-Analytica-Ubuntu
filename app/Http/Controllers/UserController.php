@@ -23,7 +23,6 @@ class UserController extends Controller
 
     public function update(Request $request, $user)
     {
-        // dd($request);
         $updatedUser = User::find($user);
         $updatedUser->role_id = $request->f_role_id;
         $updatedUser->save();
@@ -48,7 +47,7 @@ class UserController extends Controller
 
     public function destroy($user)
     {
-        // TODO , This is the Controller , But still need to add in the ui 
+        //  This is the Controller , But still need to add in the ui 
         $deleteduser = User::where('id', $user);
         $deleteduser->delete();
         Toastr()->info('user is Deleted Successfully');

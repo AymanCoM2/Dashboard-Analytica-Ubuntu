@@ -15,11 +15,6 @@ class FileGenerationController extends Controller
             $received_query = $request->que;
             $pdf  = PDF::loadHTML('<h1>Test</h1>');
             return $pdf->download('invoice.pdf');
-            // return response()->json(['data' => "VV", 'first' => 'dr', 'row' => $received_query]);
-
-
-            // 
-
         }
     }
 }
