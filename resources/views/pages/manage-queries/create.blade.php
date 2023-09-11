@@ -17,6 +17,17 @@
                 @endforeach
             </select>
         </div>
+
+        <div class="form-group">
+            <label for="">Database Name :</label>
+            <select class="form-select" aria-label="Default select example" name="db_name"  id="d_name">
+                @foreach (App\Models\Dbase::all() as $dbase)
+                    <option value="{{ $dbase->db_name }}" selected>{{ $dbase->db_name }} </option>
+                @endforeach
+            </select>
+        </div>
+
+
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Enter SQL Query Here : </label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="f_sql_query_string" required></textarea>
@@ -76,6 +87,7 @@
                     url: "{{ route('vvv') }}",
                     data: {
                         que: $("#exampleFormControlTextarea1").val(),
+                        db_name: $("#d_name").val(),
                     },
                     success: function(data) {
                         console.log('Data Success From the API');

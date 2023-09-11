@@ -13,6 +13,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('report_category_id')->default(1); // To Make a Real One First 
             $table->foreign('report_category_id')->references('id')->on('report_categories')->cascadeOnDelete();
             $table->string('query_title');
+            $table->string('db_name')->default('LB');
             $table->longText("sql_query_string"); // To Store the SQL Query
             $table->timestamps();
         });

@@ -11,10 +11,17 @@ class DummyController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
+            $selectedDB  = '';
             $received_query = $request->que;
+            if ($request->db_name) {
+                $selectedDB = $request->db_name;
+            } else {
+                $selectedDB = 'LB'; // ! Default DB Name;
+            }
             $osInfo = php_uname();
             $firstWord = strtok($osInfo, ' ');
             if (strcasecmp($firstWord, 'Windows') === 0) {
+                // TODO the ENV variable WIll be GLOBAL FOR ALL USERS logged in NOW ?
                 $data = DB::connection('sqlsrv')->select($received_query);
                 $firstElement = $data[0];
                 $allKeys = [];
@@ -27,7 +34,8 @@ class DummyController extends Controller
                 // ! : This Will Take DB Credits From the ENV 
             } else {
                 $serverName = "10.10.10.100";
-                $databaseName = "LB";
+                // $databaseName = "LB";
+                $databaseName = $selectedDB;
                 $uid = "ayman";
                 $pwd = "admin@1234";
                 $options = [

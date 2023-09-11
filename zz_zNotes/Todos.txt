@@ -1,12 +1,1 @@
-Importing and Exporting:
-	{
-		- From Hard Drive C: Not Network,An Excel that would be Contiuously Updated 
-		- ".xlsm" File with Multiple Sheets ??? Import to Mysql
-	}
-
-DB
-	{
-		- The user Credintials "User Of the DB" 
-		- Determining the DataBase Name For the Envoronment Variable
-	}
-
+3- To use LB or another dbs

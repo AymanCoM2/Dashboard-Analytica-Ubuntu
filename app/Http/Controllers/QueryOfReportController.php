@@ -28,6 +28,7 @@ class QueryOfReportController extends Controller
         $newQuery->report_category_id = $request->f_report_category_id;
         // $newQuery->sql_query_string = nl2br($request->f_sql_query_string);
         $newQuery->sql_query_string = $request->f_sql_query_string;
+        $newQuery->db_name = $request->db_name;
         $newQuery->save();
 
         DB::insert('insert into roles_queries (role_id, query_id) values (?, ?)', [1, $newQuery->id]);

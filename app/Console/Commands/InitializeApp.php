@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Dbase;
 use App\Models\ReportCategory;
 use App\Models\Role;
 use App\Models\User;
@@ -39,6 +40,14 @@ class InitializeApp extends Command
         $defaultCategory  = new ReportCategory();
         $defaultCategory->category_name  = "Default Category";
         $defaultCategory->save();
+
+
+        $dbLB = new Dbase();
+        $dbLB->db_name  = 'LB';
+        $dbLB->save();
+        $dbTM = new Dbase();
+        $dbTM->db_name  = 'TM';
+        $dbTM->save();
     }
 }
 // Now Once the Command is Run the Category and the Defult Userrs are Ok with the ssytem  ; 

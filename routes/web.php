@@ -59,7 +59,6 @@ Route::get('/dash/users/show/{id}', [UserController::class, 'showUserData'])->na
 Route::post('/dash/users/update/{id}', [UserController::class, 'update'])->name('users.manage.update')->middleware(['verified', RoleMiddleware::class]);
 
 Route::post('/data/data', [DummyController::class, 'index'])->name('vvv');
-// Route::get('/data/data', [DummyController::class, 'index'])->name('vvv');
 
 Route::get('/needapproval', [DummyController::class, 'approveFirst'])->name('need-approval')->middleware('verified'); // TODO not-approved-Yet-User
 

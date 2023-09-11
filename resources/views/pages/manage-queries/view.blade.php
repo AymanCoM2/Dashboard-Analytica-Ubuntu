@@ -15,6 +15,7 @@
                     </div>
                 </div>
             </div>
+            <input type="hidden" id="d_name" value="{{ $singleQuery->db_name }}">
         </div>
     </div>
 
@@ -61,6 +62,7 @@
                 url: "{{ route('vvv') }}",
                 data: {
                     que: $('textarea#er').val(),
+                    db_name: $("#d_name").val(),
                 },
                 success: function(data) {
                     console.log('Data Success From the API');
