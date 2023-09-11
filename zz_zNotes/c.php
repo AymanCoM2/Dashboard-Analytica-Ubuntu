@@ -4,8 +4,22 @@ $osInfo = php_uname();
 $firstWord = strtok($osInfo, ' ');
 
 if (strcasecmp($firstWord, 'Windows') === 0) {
-    $data = DB::connection('sqlsrv')->select($sap_Query);
-} else {
+    $data = DB::connection('sqlsrv')->select($received_query);
+    $firstElement = $data[0];
+    $allKeys = [];
+    $tdContent = "";
+    foreach ($firstElement as $key => $value) {
+        array_push($allKeys, $key);
+        $tdContent .= "<td>$key</td>";
+    }
+    return response()->json(['data' => $data, 'first' => $firstElement, 'keys' => $allKeys, 'row' => $tdContent]);
+    // ! : This Will Take DB Credits From the ENV 
+}
+
+
+
+
+else {
     $serverName = "10.10.10.100";
     $databaseName = "LB";
     $uid = "ayman";
@@ -16,8 +30,16 @@ if (strcasecmp($firstWord, 'Windows') === 0) {
         "TrustServerCertificate" => true,
     ];
     $conn = new PDO("sqlsrv:server = $serverName; Database = $databaseName;", $uid, $pwd, $options);
-    $stmt = $conn->query($sap_Query);
+    $stmt = $conn->query($received_query);
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $data[] = $row; // Append each row to the $data array
     }
+    $firstElement = $data[0];
+    $allKeys = [];
+    $tdContent = "";
+    foreach ($firstElement as $key => $value) {
+        array_push($allKeys, $key);
+        $tdContent .= "<td>$key</td>";
+    }
+    return response()->json(['data' => $data, 'first' => $firstElement, 'keys' => $allKeys, 'row' => $tdContent]);
 }

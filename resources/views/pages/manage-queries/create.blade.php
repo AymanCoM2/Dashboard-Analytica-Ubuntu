@@ -76,7 +76,7 @@
                     },
                     success: function(data) {
                         console.log('Data Success From the API');
-
+                        console.log(data);
                         const x = data.data;
                         columnNames = data.keys;
                         for (var i of columnNames) {
@@ -145,8 +145,9 @@
                             }, // initComplete END 
                         }); // End Of Making the New Data Table 
                     },
-                    error: function() {
+                    error: function(err) {
                         $("#loader").text("Error Running the SQL query !!");
+                        console.log(err);
                     },
                 })
             });
