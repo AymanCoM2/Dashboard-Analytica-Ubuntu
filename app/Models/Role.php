@@ -15,5 +15,4 @@ class Role extends Model
     {
         return $this->belongsToMany(QueryOfReport::class, 'roles_queries');
     }
-
 }
