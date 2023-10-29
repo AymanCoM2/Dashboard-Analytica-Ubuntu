@@ -122,7 +122,8 @@
                             }, // initComplete END 
                         }); // End Of Making the New Data Table 
                     },
-                    error: function() {
+                    error: function(e) {
+                        console.log(e);
                         $("#loader").text("Error Running the SQL query !!");
                     },
                 })
