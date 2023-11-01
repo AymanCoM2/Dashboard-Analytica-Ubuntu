@@ -1,4 +1,0 @@
-// que: "{!! $singleQuery->sql_query_string !!}",
-
-This was A Comment in the Code and Yet it was Making an Error in the Code 
-Why and How It was Making the Erro ? 
