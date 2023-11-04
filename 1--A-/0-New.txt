@@ -1,0 +1,10 @@
+1- App iniitalize Command -> AljouaiT
+
+2- Don't Forget to Change env File "App_debug and DB pass "
+
+3- 
+
+
+Sending Query in Body + Sending Token For the User in Query String ?
+    - Token Determine id and Role For the user and all those stuff 
+

@@ -9,7 +9,7 @@ class QueryOfReport extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['report_cateogry_id', 'query_title', 'sql_query_string','db_name'];
+    protected $fillable = ['report_cateogry_id', 'query_title', 'sql_query_string', 'db_name', 'query_pivot'];
 
     public function category()
     {

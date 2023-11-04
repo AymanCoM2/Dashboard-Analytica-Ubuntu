@@ -26,14 +26,11 @@ class QueryOfReportController extends Controller
         $newQuery = new QueryOfReport;
         $newQuery->query_title = $request->f_query_title;
         $newQuery->report_category_id = $request->f_report_category_id;
-        // $newQuery->sql_query_string = nl2br($request->f_sql_query_string);
         $newQuery->sql_query_string = $request->f_sql_query_string;
         $newQuery->db_name = $request->db_name;
         $newQuery->save();
-
         DB::insert('insert into roles_queries (role_id, query_id) values (?, ?)', [1, $newQuery->id]);
         // ^ after adding the New Query , Use DB Facade to store it For the Admin Role 
-
         return view('pages.manage-queries.index');
     } // DONE 
 

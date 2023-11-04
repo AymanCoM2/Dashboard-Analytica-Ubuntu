@@ -7,6 +7,22 @@
             <p class="float-right">{{ $singleQuery->created_at }}</p>
             <br>
             <hr>
+            @php
+
+                // 7 -> Time In Minutes
+                // name => ayman is the data
+                // token-id >> Unique Identifier For this Token
+
+                $token = JWT::get('someid', ['dbName' => $singleQuery->db_name, 'sqlQuery' => $singleQuery->sql_query_string, 'aud' => 'urn:foo'], 360000, 'simpleKey');
+            @endphp
+            <a href="http://10.10.20.18:8501/?name={{ $token }}" class="btn btn-warning rounded-pill text-white">
+                Pivot Token
+            </a>
+
+
+            <a href="" class="btn btn-primary">
+                Refresh Pivot Link
+            </a>
             <div class="card" style="display: none;">
                 <div class="card-body">
                     <div class="form-group">

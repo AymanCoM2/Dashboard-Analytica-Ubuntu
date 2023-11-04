@@ -48,6 +48,9 @@ class InitializeApp extends Command
         $dbTM = new Dbase();
         $dbTM->db_name  = 'TM';
         $dbTM->save();
+        $dbJou = new Dbase();
+        $dbJou->db_name  = 'AljouaiT';
+        $dbJou->save();
     }
 }
 // Now Once the Command is Run the Category and the Defult Userrs are Ok with the ssytem  ; 

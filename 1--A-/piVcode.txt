@@ -1,0 +1,3 @@
+SELECT T100.ItemCode ,T100.ItemName , T11.OnHand 'STOCK' , T11.WhsCode , LEFT(T11.WhsCode,2) 'LWhs' , RIGHT(T11.WhsCode,2)'RWhs'  
+From LB.DBO.Oitm T100 INNER JOIN LB.DBO.OITW T11 on T100.ITEMCODE =T11.ITEMCODE  
+WHERE T11.OnHand <> 0 AND T100.ItemName NOT LIKE N'%خصم%'

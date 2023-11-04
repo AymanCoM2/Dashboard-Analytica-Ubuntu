@@ -62,3 +62,25 @@ Deleting Users ?
 
 - SSL For the Project
 - Making the Project AutoLoad - Auto Run Mysql Server Upon Bootstrapping . 
+
+
+
+
+
+
+//////////////REAL ///////////////REAL 
+
+
+5-Exporting Files Issues :
+- The Exported Excel File has the First Row EMPTY
+- Exporting Report as PDF  ;
+- Excel File Exporting On the Mobile Devices [ Testing it ]
+- Notify the User about Export [Toaster]
+======================
+TODO => Making Excel Sheet with all todos and Stuff  ; 
+===================
+- Rounding Numbers -> From the DB 
+- The Server Side Export For Files [ Pdf , Excel , csv ] ; 
+    - Because Exporting Now Making Lagging 
+- Charts
+- Pivot Table

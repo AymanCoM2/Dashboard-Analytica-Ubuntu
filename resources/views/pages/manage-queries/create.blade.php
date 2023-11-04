@@ -1,7 +1,6 @@
 @extends('dash')
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 @section('main-content')
-    {{--  --}}
     <form method="POST" action="{{ route('queries.manage.store') }}">
         @csrf
         <div class="form-group">
@@ -20,7 +19,7 @@
 
         <div class="form-group">
             <label for="">Database Name :</label>
-            <select class="form-select" aria-label="Default select example" name="db_name"  id="d_name">
+            <select class="form-select" aria-label="Default select example" name="db_name" id="d_name">
                 @foreach (App\Models\Dbase::all() as $dbase)
                     <option value="{{ $dbase->db_name }}" selected>{{ $dbase->db_name }} </option>
                 @endforeach
@@ -155,7 +154,6 @@
                                             e.stopPropagation();
                                         });
                                     });
-
                                 // alert(timeElapsed);
                             }, // initComplete END 
                         }); // End Of Making the New Data Table 
@@ -166,7 +164,6 @@
                     },
                 })
             });
-
         }); // End OF Document Ready
     @endsection
 </script>
