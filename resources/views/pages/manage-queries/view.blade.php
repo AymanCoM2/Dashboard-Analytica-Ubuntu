@@ -8,14 +8,14 @@
             <br>
             <hr>
             @php
-
-                // 7 -> Time In Minutes
-                // name => ayman is the data
-                // token-id >> Unique Identifier For this Token
-
-                $token = JWT::get('someid', ['dbName' => $singleQuery->db_name, 'sqlQuery' => $singleQuery->sql_query_string, 'aud' => 'urn:foo'], 360000, 'simpleKey');
+                $isAdmin = false;
+                $userRoleId = Auth::user()->role_id;
+                if ($userRoleId == 1) {
+                    $isAdmin = true;
+                }
+                $token = JWT::get('token-Unique-Identifier', ['queryId' => $singleQuery->id, 'dbName' => $singleQuery->db_name, 'sqlQuery' => $singleQuery->sql_query_string, 'pivotCode' => $singleQuery->query_pivot, 'isAdmin' => $isAdmin, 'aud' => 'urn:foo'], 360000, 'simpleKey');
             @endphp
-            <a href="http://10.10.20.18:8501/?name={{ $token }}" class="btn btn-warning rounded-pill text-white">
+            <a href="http://10.10.20.18:8502/?name={{ $token }}" class="btn btn-warning rounded-pill text-white">
                 Pivot Token
             </a>
 
