@@ -13,7 +13,7 @@
                 if ($userRoleId == 1) {
                     $isAdmin = true;
                 }
-                $token = JWT::get('token-Unique-Identifier', ['queryId' => $singleQuery->id, 'dbName' => $singleQuery->db_name, 'sqlQuery' => $singleQuery->sql_query_string, 'pivotCode' => $singleQuery->query_pivot, 'isAdmin' => $isAdmin], 360000, 'simpleKey');
+                $token = JWT::get('token-Unique-Identifier', ['queryId' => $singleQuery->id, 'dbName' => $singleQuery->db_name, 'sqlQuery' => $singleQuery->sql_query_string, 'pivotCode' => $singleQuery->query_pivot, 'isAdmin' => $isAdmin], 360000, 'simpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKey');
             @endphp
             <a href="http://10.10.10.66:8052/?name={{ $token }}" class="btn btn-warning rounded-pill text-white">
                 Pivot Token
