@@ -6,6 +6,7 @@ use App\Models\QueryOfReport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use STS\JWT\JWTFacade;
 // use STS\JWT\JWTFacade;
 
 class QueryOfReportController extends Controller
@@ -39,14 +40,14 @@ class QueryOfReportController extends Controller
     public function view($id)
     {
         $singleQuery = QueryOfReport::find($id);
-        
-        // $isAdmin = false;
-        // $userRoleId = Auth::user()->role_id;
-        // if ($userRoleId == 1) {
-        //     $isAdmin = true;
-        // }
-        // $token = JWTFacade::get('token-Unique-Identifier', ['queryId' => $singleQuery->id, 'dbName' => $singleQuery->db_name, 'sqlQuery' => $singleQuery->sql_query_string, 'pivotCode' => $singleQuery->query_pivot, 'isAdmin' => $isAdmin, 'aud' => 'urn:foo'], 360000, 'simpleKey');
-        return view('pages.manage-queries.view', compact('singleQuery'));
+
+        $isAdmin = false;
+        $userRoleId = Auth::user()->role_id;
+        if ($userRoleId == 1) {
+            $isAdmin = true;
+        }
+        $token = JWTFacade::get('token-Unique-Identifier', ['queryId' => $singleQuery->id, 'dbName' => $singleQuery->db_name, 'sqlQuery' => $singleQuery->sql_query_string, 'pivotCode' => $singleQuery->query_pivot, 'isAdmin' => $isAdmin, 'aud' => 'urn:foo'], 360000, 'simpleKey');
+        return view('pages.manage-queries.view', compact(['singleQuery' , 'token']));
     }
     public function edit($id)
     {
