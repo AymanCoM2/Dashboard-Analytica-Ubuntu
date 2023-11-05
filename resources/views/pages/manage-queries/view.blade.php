@@ -15,7 +15,7 @@
                 }
                 $token = JWT::get('token-Unique-Identifier', ['queryId' => $singleQuery->id, 'dbName' => $singleQuery->db_name, 'sqlQuery' => $singleQuery->sql_query_string, 'pivotCode' => $singleQuery->query_pivot, 'isAdmin' => $isAdmin, 'aud' => 'urn:foo'], 360000, 'simpleKey');
             @endphp
-            <a href="http://10.10.20.18:8502/?name={{ $token }}" class="btn btn-warning rounded-pill text-white">
+            <a href="http://10.10.10.66:8502/?name={{ $token }}" class="btn btn-warning rounded-pill text-white">
                 Pivot Token
             </a>
 
