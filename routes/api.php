@@ -30,11 +30,12 @@ Route::post('/save-pivot', function (Request $request) {
       $output .= str_repeat("\t", $indent_level) . $line . "\n";
     }
   }
+  $output .= "renderAlsoPivot(dataFrame)\n";
   $queryId  = $jsonData['queryId'];
   $pivQuery = QueryOfReport::where('id', '=', $queryId)->first();
   if ($pivQuery) {
     $pivQuery->query_pivot  = $output;
     $pivQuery->save();
   }
-  return response()->json(['msg' => "Ok", 'fC' => $output]);
+  return response()->json(['msg' => "Ok"]);
 });
