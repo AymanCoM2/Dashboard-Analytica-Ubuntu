@@ -6,6 +6,7 @@ use App\Models\QueryOfReport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use STS\JWT;
 use STS\JWT\JWTFacade;
 // use STS\JWT\JWTFacade;
 
