@@ -42,13 +42,7 @@ class QueryOfReportController extends Controller
     {
         $singleQuery = QueryOfReport::find($id);
 
-        $isAdmin = false;
-        $userRoleId = Auth::user()->role_id;
-        if ($userRoleId == 1) {
-            $isAdmin = true;
-        }
-        $token = JWTFacade::get('token-Unique-Identifier', ['queryId' => $singleQuery->id, 'dbName' => $singleQuery->db_name, 'sqlQuery' => $singleQuery->sql_query_string, 'pivotCode' => $singleQuery->query_pivot, 'isAdmin' => $isAdmin, 'aud' => 'urn:foo'], 360000, 'simpleKey');
-        return view('pages.manage-queries.view', compact(['singleQuery' , 'token']));
+        return view('pages.manage-queries.view', compact('singleQuery'));
     }
     public function edit($id)
     {
