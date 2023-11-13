@@ -19,7 +19,6 @@
                 Pivot Token
             </a>
 
-
             <a href="" class="btn btn-primary">
                 Refresh Pivot Link
             </a>

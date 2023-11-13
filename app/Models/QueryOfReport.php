@@ -16,8 +16,18 @@ class QueryOfReport extends Model
         return $this->belongsTo(ReportCategory::class);
     }
 
-    public function roles()
+    // public function roles()
+    // {
+    //     return $this->belongsToMany(Role::class, 'roles_queries');
+    // }
+
+    public function querytags()
     {
-        return $this->belongsToMany(Role::class, 'roles_queries');
+        return $this->hasMany(QueryTag::class , 'query_id');
+    }
+
+    public function querypivots()
+    {
+        return $this->hasMany(QueryPrivot::class);
     }
 }

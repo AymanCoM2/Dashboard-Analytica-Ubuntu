@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('query_title');
             $table->string('db_name')->default('LB');
             $table->longText("sql_query_string"); // To Store the SQL Query
-            $table->longText("query_pivot")->nullable(); 
+            // $table->longText("query_pivot")->nullable();  // ! This Has To be Removed in another table 
             $table->timestamps();
         });
     }

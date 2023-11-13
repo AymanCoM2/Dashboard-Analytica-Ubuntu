@@ -30,7 +30,20 @@
             </select>
         </div>
 
+        <div class="form-group">
+            <label for="">Tags For the Query : </label>
+            <select id="e1" class="form-control" name="tags[]" multiple>
+                @foreach ($singleQuery->querytags as $tagObject)
+                    <option value="{{ $tagObject->tag }}" selected>{{ $tagObject->tag }}</option>
+                @endforeach
 
+                @if (old('tags'))
+                    @foreach (old('tags') as $tag)
+                        <option value="{{ $tag }}" selected>{{ $tag }}</option>
+                    @endforeach
+                @endif
+            </select>
+        </div>
 
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Enter SQL Query Here : </label>

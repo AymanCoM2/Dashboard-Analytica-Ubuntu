@@ -1,3 +1,5 @@
 $ php artisan migrate:fresh
 $ php artisan app:initialize-app
+Notes : 
+    - Don't Forget to Change env File "App_debug and DB pass"
 

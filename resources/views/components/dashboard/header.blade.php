@@ -7,6 +7,12 @@
             </div>
         </div>
 
+        <div class="form-outline w-75 ml-5  p-2 border border-danger">
+            <form action="{{ route('search-get') }}" method="get">
+                <input type="search" class="form-control" placeholder="Search..." name="qq" />
+            </form>
+        </div>
+
         <div class="header-right">
             <ul class="clearfix">
                 <li class="icons dropdown">
@@ -28,8 +34,6 @@
                                                 @csrf
                                             </form>
                                         </span></a></li>
-
-
                             </ul>
                         </div>
                     </div>

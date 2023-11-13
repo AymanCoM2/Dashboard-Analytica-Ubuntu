@@ -8,6 +8,7 @@
             <input type="text" name="f_query_title" class="form-control" required
                 placeholder="Enter Name Of Report Category">
         </div>
+
         <div class="form-group">
             <label for="">Query Category :</label>
             <select class="form-select" aria-label="Default select example" name="f_report_category_id">
@@ -23,6 +24,17 @@
                 @foreach (App\Models\Dbase::all() as $dbase)
                     <option value="{{ $dbase->db_name }}" selected>{{ $dbase->db_name }} </option>
                 @endforeach
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="">Tags For the Query : </label>
+            <select id="e1" class="form-control" name="tags[]" multiple>
+                @if (old('tags'))
+                    @foreach (old('tags') as $tag)
+                        <option value="{{ $tag }}" selected>{{ $tag }}</option>
+                    @endforeach
+                @endif
             </select>
         </div>
 

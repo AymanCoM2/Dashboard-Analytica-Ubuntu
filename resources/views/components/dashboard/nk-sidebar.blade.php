@@ -31,8 +31,6 @@
                 @endif
 
                 <li class="nav-label">Categories : </li>
-                {{-- // TODO --}}
-                {{-- // HACK --}}
                 @foreach (App\Models\ReportCategory::all() as $category)
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">

@@ -37,4 +37,10 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo(Role::class, 'role_id');
     }
+
+    public function querypivots()
+    {
+        // ?????????????
+        return $this->hasMany(QueryPrivot::class);
+    }
 }
