@@ -13,13 +13,14 @@
                 if ($userRoleId == 1) {
                     $isAdmin = true;
                 }
+
                 $token = JWT::get(
                     'token-Unique-Identifier',
                     [
                         'queryId' => $singleQuery->id,
                         'dbName' => $singleQuery->db_name,
                         'sqlQuery' => $singleQuery->sql_query_string,
-                        'pivotCode' => $singleQuery->query_pivot,
+                        'pivotCode' => $singleQuery->query_pivot, // ! many codes 
                         'isAdmin' => $isAdmin,
                         'userId' => request()->user()->id,
                     ],
