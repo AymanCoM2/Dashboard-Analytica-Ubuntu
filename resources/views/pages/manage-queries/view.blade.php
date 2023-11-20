@@ -13,12 +13,26 @@
                 if ($userRoleId == 1) {
                     $isAdmin = true;
                 }
-                $token = JWT::get('token-Unique-Identifier', ['queryId' => $singleQuery->id, 'dbName' => $singleQuery->db_name, 'sqlQuery' => $singleQuery->sql_query_string, 'pivotCode' => $singleQuery->query_pivot, 'isAdmin' => $isAdmin], 360000, 'simpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKey');
+                $token = JWT::get(
+                    'token-Unique-Identifier',
+                    [
+                        'queryId' => $singleQuery->id,
+                        'dbName' => $singleQuery->db_name,
+                        'sqlQuery' => $singleQuery->sql_query_string,
+                        'pivotCode' => $singleQuery->query_pivot,
+                        'isAdmin' => $isAdmin,
+                        'userId' => request()->user()->id,
+                    ],
+                    360000,
+                    'simpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKey',
+                );
             @endphp
-            <a href="http://10.10.10.66:8052/?name={{ $token }}" class="btn btn-warning rounded-pill text-white">
+            <a href="http://127.0.0.1:8501/?name={{ $token }}" class="btn btn-warning rounded-pill text-white">
                 Pivot Token
             </a>
-
+            {{-- <a href="http://10.10.10.66:8052/?name={{ $token }}" class="btn btn-warning rounded-pill text-white">
+                Pivot Token
+            </a> --}}
             <a href="" class="btn btn-primary">
                 Refresh Pivot Link
             </a>
@@ -49,7 +63,6 @@
             </tbody>
             <tfoot>
                 <tr>
-
                 </tr>
             </tfoot>
         </table>
@@ -81,10 +94,8 @@
                 },
                 success: function(data) {
                     console.log('Data Success From the API');
-
                     const x = data.data;
                     const columnNames = data.keys;
-
                     for (var i of columnNames) {
                         columns.push({
                             data: i,
@@ -92,7 +103,6 @@
                         });
                         document.getElementById("the-heading").innerHTML = data.row;
                     } // 
-
 
                     pdfMake.fonts = {
                         Roboto: {
@@ -102,7 +112,6 @@
                             bolditalics: 'Roboto-Italic.ttf'
                         }
                     }; // Setting Up the Fonts For the Pdf  Report 
-
 
                     table = $('.data-table').DataTable({
                         dom: 'Bfrtip',
@@ -137,7 +146,6 @@
                         data: x,
                         columns: columns,
                         initComplete: function() {
-
                             $("#loader").text("")
                             this.api()
                                 .columns()
@@ -169,8 +177,6 @@
                     $("#loader").text("Error Running the SQL query !!");
                 }, // End of Error Option 
             }) // End Of Ajax call 
-
-
 
             function addBtnEvent() {
                 let buttonsArr = document.getElementsByClassName(

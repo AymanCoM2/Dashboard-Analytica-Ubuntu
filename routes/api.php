@@ -34,6 +34,8 @@ Route::post('/save-pivot', function (Request $request) {
   $queryId  = $jsonData['queryId'];
   $pivQuery = QueryOfReport::where('id', '=', $queryId)->first();
   if ($pivQuery) {
+    // There is a New Thing Here For it 
+    // [Adding thr]
     $pivQuery->query_pivot  = $output;
     $pivQuery->save();
   }
