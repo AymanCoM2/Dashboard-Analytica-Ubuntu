@@ -23,11 +23,11 @@ class QueryOfReport extends Model
 
     public function querytags()
     {
-        return $this->hasMany(QueryTag::class , 'query_id');
+        return $this->hasMany(QueryTag::class, 'query_id');
     }
 
     public function querypivots()
     {
-        return $this->hasMany(QueryPrivot::class);
+        return $this->hasMany(QueryPrivot::class, 'query_id');
     }
 }

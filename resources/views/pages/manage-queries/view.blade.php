@@ -13,20 +13,29 @@
                 if ($userRoleId == 1) {
                     $isAdmin = true;
                 }
-
+                $pivo = $singleQuery
+                    ->querypivots()
+                    ->where('user_id', request()->user()->id)
+                    ->first();
+                if ($pivo) {
+                    $p = $pivo->query_pivot;
+                } else {
+                    $p = '';
+                }
                 $token = JWT::get(
                     'token-Unique-Identifier',
                     [
                         'queryId' => $singleQuery->id,
                         'dbName' => $singleQuery->db_name,
                         'sqlQuery' => $singleQuery->sql_query_string,
-                        'pivotCode' => $singleQuery->query_pivot, // ! many codes 
+                        'pivotCode' => $p,
                         'isAdmin' => $isAdmin,
                         'userId' => request()->user()->id,
                     ],
                     360000,
                     'simpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKeysimpleKey',
                 );
+                // This is
             @endphp
             <a href="http://127.0.0.1:8501/?name={{ $token }}" class="btn btn-warning rounded-pill text-white">
                 Pivot Token

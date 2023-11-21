@@ -1,15 +1,14 @@
 <?php
 
-use App\Models\QueryOfReport;
+use App\Models\QueryPrivot;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Pagination\Paginator;
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
   return $request->user();
 });
+
 
 Route::post('/save-pivot', function (Request $request) {
   $jsonData = $request->json()->all();
@@ -32,12 +31,18 @@ Route::post('/save-pivot', function (Request $request) {
   }
   $output .= "renderAlsoPivot(dataFrame)\n";
   $queryId  = $jsonData['queryId'];
-  $pivQuery = QueryOfReport::where('id', '=', $queryId)->first();
+  $userId  = $jsonData['userId'];
+  $pivQuery = QueryPrivot::where('query_id', '=', $queryId)->where('user_id', $userId)->first();
   if ($pivQuery) {
-    // There is a New Thing Here For it 
-    // [Adding thr]
     $pivQuery->query_pivot  = $output;
     $pivQuery->save();
+  } else {
+    $qpvt = new QueryPrivot();
+    $qpvt->query_pivot = $output;
+    $qpvt->user_id = $userId;
+    $qpvt->query_id = $queryId;
+    $qpvt->save();
   }
   return response()->json(['msg' => "Ok"]);
 });
+
